@@ -1,0 +1,81 @@
+html {
+    background-color: rgb(49, 49, 49);
+}
+
+.chart {
+    text-align: center;
+}
+
+h1, h2 {
+    padding-top: 20px;
+    font-family: sans-serif;
+    color: rgb(231, 231, 231);
+    text-align: center;
+}
+/* line styles */
+.axis path,
+.axis line { 
+	fill: none;
+	shape-rendering: crispEdges;
+}
+/* labels */
+.axis text, text{
+	font-family: sans-serif;
+    font-size: 12px;
+    fill: rgb(231, 231, 231);
+}
+
+/* .axis text, text:not(.heatmap){
+    font-size: 10px;
+} */
+
+.bar {
+    fill: rgb(49, 49, 49);
+    stroke: #75D4CA;
+}
+  
+.bar:hover {
+    fill: rgb(80, 80, 80);
+}
+
+#group-by {
+    width: 100%;
+    text-align: center;
+    color: rgb(231, 231, 231);  /* handles color of text */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 8" width="30"><path fill="white" d="M0,0l6,8l6-8"/></svg>') center right no-repeat;
+    background-color: rgb(70, 70, 70); /* background color?? */
+    border-color: rgb(231, 231, 231);
+}
+
+label {
+    color: rgb(231, 231, 231);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin:auto;
+
+}
+
+.path {
+    fill: rgb(231, 231, 231);
+}
+
+#sort-button {
+    color: rgb(231, 231, 231);
+    border-color: rgb(231, 231, 231);
+}
+
+#sort-button:hover {
+    color: rgb(110, 110, 110);
+    border-color: rgb(110, 110, 110);
+}
+
+.wordcloud{
+  border-style:inset;
+  color:white;
+}
+

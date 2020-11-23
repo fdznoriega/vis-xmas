@@ -1,0 +1,22 @@
+
+DATA NOTES:
+
+Out of 387 songs, there is data for 320. Confirmed via:
+  -  console.log(songs.map(d => d.artist));
+  -  console.log(lyrics.map(d => d.artist));
+
+SONGS and LYRICS data has been updated to make up for the broken song id
+and for ease of use. Here are the changes:
+
+SONG DATA:
+  *  artist = performer                       -> renamed to be consistent with lyric data
+  *  song = song.toUpperCase()                -> made it upper case to be consistent with lyric data
+  *  songid = artist.substring(0, 3).toUpperCase() + song.substring(0, 5).toUpperCase()
+  *  rank = week_position                  -> the rank on the board that week)
+  *  date = new Date(d.year, d.month, d.day)  -> created JS Date object for use in D3 (see coffee chain data lab)
+
+LYRIC DATA:
+  *  artist               -> unchanged
+  *  song = track_title   -> changed to be consistent with lyric data
+  *  songid = artist.substring(0, 3).toUpperCase() + song.substring(0, 5).toUpperCase()
+  *  lyrics               -> "collapsed" lyrics into ONE array. one block = one "line" of lyrics
