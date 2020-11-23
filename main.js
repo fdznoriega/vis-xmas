@@ -16,8 +16,6 @@ Promise.all([
   )
 ]).then(([songs, lyrics]) => {
   // data cleaning!!
-
-  // remove broken song id: now use artist and song to match
   songs = songs.map(d => {
     return {
       artist: d.performer,
@@ -89,8 +87,9 @@ function createVis(songs, lyrics) {
   // update dataset
   songData = songs;
   lyricData = lyrics;
-
-  console.log(songs, lyrics);
+  lyricData = lyrics.filter((elem, index, self) => self.findIndex(
+    (t) => {return (t.artist === elem.artist && t.song === elem.song)}) === index)
+  console.log(songs, lyricData);
 
   // create the visualizations
 
@@ -99,15 +98,15 @@ function createVis(songs, lyrics) {
   //var bar = barchart("barchart");
   //barchart.upate(WIP);
 
-  var wc = wordcloud(lyrics);
+  var wc = wordcloud(lyricData);
   // wordCloud.update(WIP);
 
-  var t = tree(songs);
+  var t = tree(lyricData, "christmas");
   // tree.update(WIP);
 }
 
 // handle select bar
 document.getElementById("group-by").addEventListener("change", event => {
-  let years = [Number(event.target.value), Number(event.target.value) + 9]
+  let years = [Number(event.target.value), Number(event.target.value) + 9];
   hm.update(songData, years);
 });

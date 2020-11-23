@@ -53,7 +53,6 @@ export default function heatmap(container) {
     let years = []; // columns of the heatmap
     // filter the data given the range of dates
     if (range) {
-      
       // filter data
       let [low, high] = range;
       data = data.filter(
@@ -68,7 +67,7 @@ export default function heatmap(container) {
       years = d3.range("1958", "2018", 1)
     }
 
-    // populate songs array, adding by uniqueness and date?
+    // populate songs array, adding by uniqueness
     data.forEach(d => (!songs.includes(d.song) ? songs.push(d.song) : null));
 
     // update scales & axes

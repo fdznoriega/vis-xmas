@@ -1,5 +1,4 @@
 
-
 let songData, lyricData;
 
 // load two datasets externally with Promise.all
@@ -71,7 +70,12 @@ Promise.all([
   // update lyrics with better format
   lyricData = collapsedLyrics;
 
-  
 });
 
-// export ?
+console.log(songData, lyricData);
+
+export {songData, lyricData};
+
+
+
+
