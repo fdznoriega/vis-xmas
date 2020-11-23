@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Final Project</title>
+
+    <!-- Milligram CSS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+
+    <!-- You CSS rules-->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Load Javascript files -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"
+    ></script>
+
+    <!-- Your code -->
+    <script src="main.js" defer type="module"></script>
+  </head>
+
+  <body>
+    <h1>Final Project</h1>
+
+    <h2>Heatmap</h2>
+    <div class="heatmap">
+      <select id="group-by">
+        <option value="1950">1950 - 1959</option>
+        <option value="1960">1960 - 1969</option>
+        <option value="1970">1970 - 1979</option>
+        <option value="1980">1980 - 1989</option>
+        <option value="1990">1990 - 1999</option>
+        <option value="2000">2000 - 2009</option>
+        <option value="2010">2010</option>
+      </select>
+    </div>
+
+    <h2>Barchart</h2>
+    <div class="barchart"></div>
+
+    <h2>Word Cloud / Bar Chart</h2>
+    <div class="wordcloud"></div>
+
+    <h2>Tree</h2>
+    <div class="tree"></div>
+  </body>
+</html>
