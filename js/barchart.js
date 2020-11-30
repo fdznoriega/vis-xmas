@@ -26,49 +26,56 @@ export default function barchart(container) {
     .append("g")
     .attr("class", "axis x-axis")
     .attr("transform", `translate(0, ${height})`);
+  
   const yAxisSVG = svg.append("g").attr("class", "axis y-axis");
+  
   //axis titles
   // const xTitle = svg.append("text")
   //                     .attr("class", "axis x-axis")
   //                     .attr("transform", `translate(0, ${height})`)
   //                     .text("Year");
 
-  const yTitle = svg
-    .append("text")
-    .attr("class", "axis y-title")
-    .attr("x", -20)
-    .attr("y", -10)
-    //.style("text-anchor", "end")
-    .text("Number of Records");
+  // const yTitle = svg
+  //   .append("text")
+  //   .attr("class", "axis y-title")
+  //   .attr("x", -20)
+  //   .attr("y", -10)
+  //   //.style("text-anchor", "end")
+  //   .text("Number of Records");
+  
+  let lyrics;
+  let formattedLyrics = [];
 
   function update(data) {
     // update scales & axes
-    //scales
-    x.domain(data.map(d => d.years));
-    y.domain([0, d3.max(d => d.weeks)]);
-    //axes
-    xAxis.scale(x);
-    yAxis.scale(y);
-
-    // ~ call ~ axes
-    xAxisSVG.call(xAxis);
-    yAxisSVG.call(yAxis);
-
-    // updata data
-    const bars = svg.selectAll(".bar").data(data);
-
-    bars
-      .enter()
-      .append("rect")
-      .attr("class", "bar")
-      .attr("x", d => x(d.year))
-      .attr("y", d => y(Math.max(0, d.weeks))) //max weeks_on_chart per year
-      .attr("width", x.bandwidth())
-      .attr("height", d => Math.abs(y(d.weeks) - y(0)))
-      .style("fill", "blue");
-
-    // exit data
-    bars.exit().remove();
+    
+    // takes in lyric data 
+    console.log(data);
+    
+    // filter lyrics by id (weird double array bug?)
+    lyrics = data.filter(d => d.songid === "BOBJINGL").map(d => d.lyrics)[0];
+    
+    // create an object of LYRIC to VALUE for bar
+    lyrics.forEach(d => {
+      
+      // create an object: lyric: NAME, count: count
+      let lyricObj = {
+        lyric: d,
+        count: 1
+      }
+      
+      
+      
+      
+    });
+    
+    // scales
+    
+    // axes
+    
+    // bar
+      
+    
   }
 
   return {

@@ -40,8 +40,12 @@
   <body>
     <h1>Final Project</h1>
 
-    <h2>Heatmap</h2>
+    <h2>Heatmap of Billboard Top 100 Ranked Holiday songs in each decade</h2>
+    <p>
+      Heatmap gradient depicts peak ranking of the song in that year, will add legend later.
+    </p>
     <div class="heatmap">
+
       <select id="group-by">
         <option value="1950">1950 - 1959</option>
         <option value="1960">1960 - 1969</option>
@@ -51,15 +55,27 @@
         <option value="2000">2000 - 2009</option>
         <option value="2010">2010</option>
       </select>
+
+      <div id="tooltip" class="hidden"></div>
+      
     </div>
 
-    <h2>Barchart</h2>
+    <h2>Word Cloud / Bar Chart (subject to change based on review) of lyrics of a song selected in the heatmap</h2>
+    <p>
+      Clicking on word/bar will filter out force layout to songs that contain the same words.
+    </p>
+    <div class="wordcloud"></div>
     <div class="barchart"></div>
 
-    <h2>Word Cloud / Bar Chart</h2>
-    <div class="wordcloud"></div>
-
-    <h2>Tree</h2>
-    <div class="tree"></div>
+    <h2>Force Simulation of other songs containing lyric selected in wordcloud</h2>
+    <p>
+      Tree SVG will be placed underneath the force simulation and nodes will be hopefully styled like Christmas ornaments.
+    </p>
+    <p>
+      People will be able to decorate a tree with the songs sharing selected lyric!
+    </p>
+    <div class="tree">
+    <div class="nodetip">
+    </div></div>
   </body>
 </html>

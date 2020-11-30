@@ -6,6 +6,10 @@ html {
     text-align: center;
 }
 
+p{
+  color: white;
+}
+
 h1, h2 {
     padding-top: 20px;
     font-family: sans-serif;
@@ -79,3 +83,43 @@ label {
   color:white;
 }
 
+#tooltip {
+    position: fixed;
+    width: 200px;
+    padding: 10px;
+    left: 0px;
+    top: 0px;
+    background-color: rgb(70, 70, 70);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#tooltip.hidden {
+    display: none;
+}
+
+#tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    color: rgb(231, 231, 231);
+    text-align: left;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+div.nodetip{
+  display:block;
+  position: absolute;
+  text-align: center;
+  background: white;
+  font-size: 20px;
+}
+
+div.freq{
+  display:block;
+  position:absolute;
+}

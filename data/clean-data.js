@@ -1,8 +1,6 @@
 
 let songData, lyricData;
 
-// load two datasets externally with Promise.all
-
 Promise.all([
   d3.csv(
     "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-24/christmas_songs.csv",
@@ -14,15 +12,15 @@ Promise.all([
   )
 ]).then(([songs, lyrics]) => {
   // data cleaning!!
-
-  // remove broken song id: now use artist and song to match
-  songData = songs.map(d => {
+  songs = songs.map(d => {
     return {
       artist: d.performer,
       song: d.song.toUpperCase(),
+      songid: d.performer.substring(0, 3).toUpperCase() + d.song.substring(0, 5).toUpperCase(),
       rank: d.week_position,
       weeks: d.weeks_on_chart,
       year: d.year,
+      month: d.month,
       date: new Date(d.year, d.month, d.day)
     };
   });
@@ -46,6 +44,7 @@ Promise.all([
           let song = {
             artist: lyrics[i].artist,
             song: lyrics[i].track_title.toUpperCase(),
+            songid: lyrics[i].artist.substring(0, 3).toUpperCase() + lyrics[i].track_title.substring(0, 5).toUpperCase(),
             lyrics: lyricsFromSong
           };
           // append new song to the uniqueSongs
@@ -68,14 +67,9 @@ Promise.all([
   }
 
   // update lyrics with better format
-  lyricData = collapsedLyrics;
+  lyrics = collapsedLyrics;
+  
+  songData = songs;
+  lyricData = lyrics;
 
 });
-
-console.log(songData, lyricData);
-
-export {songData, lyricData};
-
-
-
-
