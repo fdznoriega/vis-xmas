@@ -26,16 +26,32 @@ export default function wordcloud(container) {
   // relevant variables
   var myWords, array, freq, layout;
 
-  function update(data) {
-    // populate the word pool
-    myWords = data.filter(
+  function update(data, song) {
+    // if song provided, use it
+    if(song) {
+      myWords = data.filter(
+        data => data.song === song.song && data.artist === song.artist
+      )[0];
+      // check if my words is null
+      if(myWords) {
+        myWords = myWords.lyrics;
+      }
+      else {
+        console.log("No lyric data for that song");
+        return;
+      }
+    }
+    // use default song
+    else {
+      // populate the word pool
+      myWords = data.filter(
       // SILVER BELLS and BING CROSBY will be made dynamic
       data => data.song == "SILVER BELLS" && data.artist == "Bing Crosby"
     )[0].lyrics;
-
+    }
+    
     // replace some dead words
     myWords = myWords.map(i => i.replace("(", "").replace(")", ""));
-
 
     // reduce myWords
     array = myWords.reduce(function(p, c) {
@@ -46,7 +62,6 @@ export default function wordcloud(container) {
     freq = Object.keys(array).map(function(key) {
       return { text: key, size: array[key] };
     });
-
 
     // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
     layout = d3.layout
@@ -66,31 +81,33 @@ export default function wordcloud(container) {
     layout.start();
 
     // word selection & drawing
-    var words = svg.selectAll(".cloudWords");
+    svg
+      .selectAll(".cloudWords")
+      .on("click", function(d) {
+        listeners["clicked"](this.innerHTML);
+        // console.log(listeners["clicked"]);
+      });
 
-    var selection = words.on("click", function(d) {
-      listeners["clicked"] = this.innerHTML;
-      console.log(listeners["clicked"]);
-    });
   }
 
   // This function takes the output of 'layout' above and draw the words
   // Better not to touch it. To change parameters, play with the 'layout' variable above
   function draw(words) {
-    svg
-      .append("g")
+    let cloudWords = svg
+      .attr("class", "cloudBox")
       .attr(
         "transform",
         "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")"
       )
-      .selectAll("text")
-      .data(words)
-      .enter()
-      .append("text")
+      .selectAll(".cloudWords")
+      .data(words);
+
+    cloudWords
+      .join("text")
+      .attr("class", "cloudWords")
       .style("font-size", function(d) {
         return d.size + "px";
       })
-      .attr("class", "cloudWords")
       .attr("text-anchor", "middle")
       .attr("transform", function(d) {
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
@@ -98,6 +115,9 @@ export default function wordcloud(container) {
       .text(function(d) {
         return d.text;
       });
+
+    cloudWords.exit().remove();
+    
   }
 
   function on(event, listener) {
