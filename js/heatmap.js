@@ -48,6 +48,8 @@ export default function heatmap(container) {
     .attr("class", "axis y-axis")
     .attr("transform", "translate(" + 0 + ", 0)");
 
+  const listeners = { clicked: null };
+
   function update(data, range) {
     let songs = []; // rows of the heatmap
     let years = []; // columns of the heatmap
@@ -84,7 +86,7 @@ export default function heatmap(container) {
 
     squares
       .join("rect")
-      .on("click", (event, d) => console.log(event, d.song))
+      .on("click", (event, d) => clicked(d))
       .transition()
       .duration(1000)
       .attr("class", "squares")
@@ -100,7 +102,18 @@ export default function heatmap(container) {
     squares.exit().remove();
   }
 
+  function on(event, listener) {
+    listeners[event] = listener;
+  }
+
+  function clicked(song) {
+    if(song) {
+      console.log("CLICKED FUNCTION: ", song);
+      listeners["clicked"](song);
+    }
+  }
+
   return {
-    update // ES6 shorthand for "update": update
+    update, on
   };
 }

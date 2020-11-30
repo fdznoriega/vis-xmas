@@ -36,14 +36,19 @@ function createVis(songs, lyrics) {
   console.log(songData, lyricData);
 
   // create the visualizations
-
   hm.update(songData, [1950, 1960]);
- 
   wc.update(lyricData);
-
   bar.update(lyricData);
 
-  var t = tree(lyricData, "christmas");
+  // check on click!
+  hm.on("clicked", song => {
+    // update all other vis
+    wc.update(lyricData, song);
+  });
+ 
+  
+
+  // var t = tree(lyricData, "christmas");
   // tree.update(WIP);
 }
 
