@@ -48,6 +48,8 @@ export default function heatmap(container) {
     .attr("class", "axis y-axis")
     .attr("transform", "translate(" + 0 + ", 0)");
 
+  const listeners = { clicked: null };
+
   function update(data, range) {
     let songs = []; // rows of the heatmap
     let years = []; // columns of the heatmap
@@ -84,7 +86,25 @@ export default function heatmap(container) {
 
     squares
       .join("rect")
-      .on("click", (event, d) => console.log(event, d.song))
+      .on("click", (event, d) => clicked(d))
+      .on("mouseenter", (event, d) => {
+        const pos = d3.pointer(event, window);
+        // show tooltip
+        d3.select("#tooltip")
+          .style("left", pos[0] + "px")
+          .style("top", pos[1] + "px")
+          .html(
+              `<p>Artist: ${d.artist} </p>` +
+              `<p>Rank: ${d.rank} </p>`
+          );
+
+        //Show the tooltip
+        d3.select("#tooltip").classed("hidden", false);
+      })
+      .on("mouseout", function(d) {
+        //Hide the tooltip
+        d3.select("#tooltip").classed("hidden", true);
+      })
       .transition()
       .duration(1000)
       .attr("class", "squares")
@@ -93,14 +113,24 @@ export default function heatmap(container) {
       // .attr("opacity", 0.1)
       .attr("width", x.bandwidth())
       .attr("height", y.bandwidth())
-      .style("fill", d => colorScheme(d.rank))
-      
+      .style("fill", d => colorScheme(d.rank));
 
     // exit data
     squares.exit().remove();
   }
 
+  function on(event, listener) {
+    listeners[event] = listener;
+  }
+
+  function clicked(song) {
+    if (song) {
+      listeners["clicked"](song);
+    }
+  }
+
   return {
-    update // ES6 shorthand for "update": update
+    update,
+    on
   };
 }

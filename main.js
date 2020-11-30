@@ -2,6 +2,7 @@ import wordcloud from "./js/wordcloud.js";
 import tree from "./js/tree.js";
 import heatmap from "./js/heatmap.js";
 import barchart from "./js/barchart.js";
+import tree2 from "./js/tree_update.js";
 
 // load two datasets externally with Promise.all
 
@@ -21,6 +22,7 @@ let lyricData;
 const hm = heatmap(".heatmap");
 const wc = wordcloud(".wordcloud");
 const bar = barchart(".barchart");
+const t2 = tree(".tree");
 
 function createVis(songs, lyrics) {
   // update dataset
@@ -38,10 +40,19 @@ function createVis(songs, lyrics) {
   // create the visualizations
 
   hm.update(songData, [1950, 1960]);
- 
   wc.update(lyricData);
-
   bar.update(lyricData);
+
+  // update other visualizations when the heatmap is clicked
+  hm.on("clicked", song => {
+    // update all other vis
+    wc.update(lyricData, song);
+  });
+  
+  wc.on("clicked", word => {
+    // word is now in main! update force diagram
+    console.log("FROM MAIN: ", word);
+  })
 
   var t = tree(lyricData, "christmas");
   // tree.update(WIP);
