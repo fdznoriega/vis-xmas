@@ -1,0 +1,33 @@
+
+Final Project: Christmas Music
+
+To Do:
+
+Final To Do:
+- hover interaction on various items
+
+Complete:
+- scroll to other interactions when clicked
+
+For final showcase:
+- Add update interaction to dragging
+- Beautify
+- Pre-process lyrics
+- [Optional] Input lyric data objects for songs we don't have
+- [Optional] Add thumbnail column to lyric data (if time permits)
+
+
+Important:
+- bar/square hover to display possible interaction
+- title for wordcloud/barchart should be the name of the song
+- fix force diagram spawn position
+- remove filler words
+- grab more data from genius lyrics
+
+Complete:
+- semi-hardcoded bounding box for the force diagram
+- heatmap interaction with wordcloud/barchart
+- made the barchart!!
+- wordcloud/barchart interaction with force diagram
+- tooltips across the board
+- heatmap scale

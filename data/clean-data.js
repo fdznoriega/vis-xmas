@@ -1,4 +1,4 @@
-
+// this file was used to clean the data
 let songData, lyricData;
 
 Promise.all([
