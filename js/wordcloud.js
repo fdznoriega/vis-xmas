@@ -1,9 +1,11 @@
 export default function wordcloud(container) {
 
   // margin convention
-  var margin = { top: 10, right: 10, bottom: 10, left: 10 },
-    width = 1250 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+  var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+    width = 700 - margin.left - margin.right,
+    height = 480 - margin.top - margin.bottom;
+  
+  // original: 700, 600
 
   // append the svg object to the body of the page
   var svg = d3
@@ -14,13 +16,13 @@ export default function wordcloud(container) {
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  const listeners = { clicked: null };
+  const listeners = { clicked: null, hovered:null };
 
   // scales
   var wordScale = d3
     .scaleLinear()
     .domain([0, 20])
-    .range([10, 200])
+    .range([10, 170])
     .clamp(true);
 
   // relevant variables
@@ -35,6 +37,8 @@ export default function wordcloud(container) {
       // check if my words is null
       if(myWords) {
         myWords = myWords.lyrics;
+        document.getElementById("wc-title").innerHTML = `${song.song}`;
+
       }
       else {
         console.log("No lyric data for that song");
@@ -44,6 +48,7 @@ export default function wordcloud(container) {
     // use default song
     else {
       // populate the word pool
+      document.getElementById("wc-title").innerHTML = `Silver Bells `;
       myWords = data.filter(
       // SILVER BELLS and BING CROSBY will be made dynamic
       data => data.song == "SILVER BELLS" && data.artist == "Bing Crosby"
@@ -97,7 +102,7 @@ export default function wordcloud(container) {
       .attr("class", "cloudBox")
       .attr(
         "transform",
-        "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")"
+        "translate(" + (layout.size()[0] + 130) / 2 + "," + layout.size()[1] / 2 + ")"
       )
       .selectAll(".cloudWords")
       .data(words);
@@ -114,7 +119,17 @@ export default function wordcloud(container) {
       })
       .text(function(d) {
         return d.text;
+      })
+      .on("mouseover", function(d, i){
+          console.log(this);
+          d3.selectAll(".cloudWords").style("opacity", "10%");
+          d3.select(this).style("font-weight", "bold").style("opacity", "100%");
+      })
+        .on("mouseleave", function(d){
+          d3.selectAll(".cloudWords").style("opacity", "100%")
+          d3.select(this).style("font-weight", "normal").style("opacity", "100%");
       });
+      
 
     cloudWords.exit().remove();
     

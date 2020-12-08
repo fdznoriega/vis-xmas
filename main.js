@@ -1,8 +1,7 @@
 import wordcloud from "./js/wordcloud.js";
-import tree from "./js/tree.js";
 import heatmap from "./js/heatmap.js";
 import barchart from "./js/barchart.js";
-import tree2 from "./js/tree_update.js";
+import tree from "./js/tree.js";
 
 // load two datasets externally with Promise.all
 
@@ -22,7 +21,7 @@ let lyricData;
 const hm = heatmap(".heatmap");
 const wc = wordcloud(".wordcloud");
 const bar = barchart(".barchart");
-const t2 = tree(".tree");
+const t = tree(".tree");
 
 function createVis(songs, lyrics) {
   // update dataset
@@ -38,28 +37,35 @@ function createVis(songs, lyrics) {
   console.log(songData, lyricData);
 
   // create the visualizations
-
-  hm.update(songData, [1950, 1960]);
+  hm.update(songData, [1950, 1960], lyricData);
   wc.update(lyricData);
   bar.update(lyricData);
+  t.update(lyricData, "christmas");
 
   // update other visualizations when the heatmap is clicked
   hm.on("clicked", song => {
     // update all other vis
+    // scroll to the barchart
+    document.getElementById("barchart").scrollIntoView({behavior: 'smooth'});
     wc.update(lyricData, song);
+    bar.update(lyricData, song);
   });
   
   wc.on("clicked", word => {
     // word is now in main! update force diagram
-    console.log("FROM MAIN: ", word);
+    document.getElementById("tree").scrollIntoView({behavior: 'smooth'});
+    t.update(lyricData, word);
   })
+  
+  bar.on("clicked", word => {
+    document.getElementById("tree").scrollIntoView();
+    t.update(lyricData, word)
+  });
 
-  var t = tree(lyricData, "christmas");
-  // tree.update(WIP);
 }
 
 // handle select bar
 document.getElementById("group-by").addEventListener("change", event => {
   let years = [Number(event.target.value), Number(event.target.value) + 10];
-  hm.update(songData, years);
+  hm.update(songData, years, lyricData);
 });

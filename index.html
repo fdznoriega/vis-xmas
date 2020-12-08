@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Final Project</title>
+    <title>Christmas Classics</title>
 
     <!-- Milligram CSS -->
     <link
@@ -22,6 +22,11 @@
 
     <!-- You CSS rules-->
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Mountains+of+Christmas"
+    />
 
     <!-- Load Javascript files -->
     <script
@@ -38,44 +43,54 @@
   </head>
 
   <body>
-    <h1>Final Project</h1>
-
-    <h2>Heatmap of Billboard Top 100 Ranked Holiday songs in each decade</h2>
-    <p>
-      Heatmap gradient depicts peak ranking of the song in that year, will add legend later.
-    </p>
-    <div class="heatmap">
-
-      <select id="group-by">
-        <option value="1950">1950 - 1959</option>
-        <option value="1960">1960 - 1969</option>
-        <option value="1970">1970 - 1979</option>
-        <option value="1980">1980 - 1989</option>
-        <option value="1990">1990 - 1999</option>
-        <option value="2000">2000 - 2009</option>
-        <option value="2010">2010</option>
-      </select>
-
-      <div id="tooltip" class="hidden"></div>
-      
+    <div style="height:100vh;width:100vw;">
+      <a href="info.html" class="info">Project Info Page Here</a>
+      <h1>What Goes Into Christmas Classics?</h1>
+      <img
+        src="https://cdn.glitch.com/4c909740-f901-4301-b90e-d2fae49fd29f%2F584305f8a6515b1e0ad75b40.png?v=1607253344648"
+        alt="logo"
+        class="center"
+      />>
     </div>
 
-    <h2>Word Cloud / Bar Chart (subject to change based on review) of lyrics of a song selected in the heatmap</h2>
-    <p>
-      Clicking on word/bar will filter out force layout to songs that contain the same words.
-    </p>
-    <div class="wordcloud"></div>
-    <div class="barchart"></div>
+    <div class="column">
+      <!-- Heatmap        -->
+      <div class="heatmap" id="heatmap" style="height:100vh;width:100vw;">
+        <h2>Billboard Top 100 Ranked Holiday Songs in Each Decade</h2>
+        <p>
+          Songs with lyrical information can be hovered over.
+        </p>
+        <select id="group-by">
+          <option value="1950">1950 - 1959</option>
+          <option value="1960">1960 - 1969</option>
+          <option value="1970">1970 - 1979</option>
+          <option value="1980">1980 - 1989</option>
+          <option value="1990">1990 - 1999</option>
+          <option value="2000">2000 - 2009</option>
+          <option value="2010">2010</option>
+        </select>
 
-    <h2>Force Simulation of other songs containing lyric selected in wordcloud</h2>
-    <p>
-      Tree SVG will be placed underneath the force simulation and nodes will be hopefully styled like Christmas ornaments.
-    </p>
-    <p>
-      People will be able to decorate a tree with the songs sharing selected lyric!
-    </p>
-    <div class="tree">
-    <div class="nodetip">
-    </div></div>
+        <div id="tooltip" class="hidden"></div>
+      </div>
+
+      <h1>Lyrical Breakdown</h2>
+      <div class="row">
+        <div class="barchart" id="barchart">
+          <h2 id="bar-title"></h2>
+        </div>
+
+        <div class="wordcloud" id="wordcloud">
+          <h2 id="wc-title">Title</h2>
+        </div>
+      </div>
+      <h1>
+        What songs contain the lyric?
+      </h1>  
+      <div class="tree" id="tree">
+        <div class="nodetip"></div>
+        <div class="treelegend"></div>
+        <div id="tooltipBar" class="hidden"></div>
+      </div>
+    </div>
   </body>
 </html>

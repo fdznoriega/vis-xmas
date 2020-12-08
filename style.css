@@ -1,5 +1,7 @@
 html {
-    background-color: rgb(49, 49, 49);
+  background-color: white;
+  scroll-behavior: smooth;
+/*   background-color: rgb(49, 49, 49); */
 }
 
 .chart {
@@ -7,14 +9,24 @@ html {
 }
 
 p{
-  color: white;
+  color: black;
 }
-
+/* h1 { 
+    font-family: "Mountains of Christmas"; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; font-weight: bold; line-height: 26px; } */
 h1, h2 {
     padding-top: 20px;
-    font-family: sans-serif;
-    color: rgb(231, 231, 231);
+    font-family: "Garamond";
+    font-weight: bold;
+/*     font-family: sans-serif; */
+    color: black;
+/*     color: rgb(231, 231, 231); */
     text-align: center;
+}
+h1{
+  padding-top: 100px;
 }
 /* line styles */
 .axis path,
@@ -23,32 +35,43 @@ h1, h2 {
 	shape-rendering: crispEdges;
 }
 /* labels */
-.axis text, text{
-	font-family: sans-serif;
-    font-size: 12px;
-    fill: rgb(231, 231, 231);
+.axis{
+	  font-family: "Garamond";
+    font-weight: bold;
+    font-size: 16px;
+    fill: black;
+/*     fill: rgb(231, 231, 231); */
 }
 
 /* .axis text, text:not(.heatmap){
     font-size: 10px;
 } */
 
-.bar {
-    fill: rgb(49, 49, 49);
+/* .bar {
+    fill: rgb(54, 102, 63);
     stroke: #75D4CA;
-}
+} */
   
 .bar:hover {
+    fill: rgb(0, 0, 0);
+}
+
+.squares:hover {
     fill: rgb(80, 80, 80);
 }
 
 #group-by {
-    width: 100%;
+    width: 50%;
     text-align: center;
-    color: rgb(231, 231, 231);  /* handles color of text */
+    color: black;
+/*     color: rgb(231, 231, 231);  /* handles color of text */ */
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 8" width="30"><path fill="white" d="M0,0l6,8l6-8"/></svg>') center right no-repeat;
-    background-color: rgb(70, 70, 70); /* background color?? */
-    border-color: rgb(231, 231, 231);
+    background-color: white;
+/*     background-color: rgb(70, 70, 70); /* background color?? */ */
+    border-color: red;
+/*     border-color: rgb(231, 231, 231); */
+    display: block;
+    margin: 0 auto;
 }
 
 label {
@@ -80,16 +103,32 @@ label {
 
 .wordcloud{
   border-style:inset;
+  border-radius: 25px;
+  background: url(https://cdn.glitch.com/4c909740-f901-4301-b90e-d2fae49fd29f%2Flooseleaf.png?v=1607394970604);
   color:white;
+  display: inline-block;
+}
+.heatmapbackground{
+  
+}
+.cloudWords{
+  color: black;
+}
+.barchart{
+  display: inline-block;
+  background: url(https://cdn.glitch.com/4c909740-f901-4301-b90e-d2fae49fd29f%2Fsnowglobe.png?v=1607395751327)
 }
 
+.tree{
+  display: inline-block;
+}
 #tooltip {
-    position: fixed;
+    position: absolute;
     width: 200px;
     padding: 10px;
     left: 0px;
     top: 0px;
-    background-color: rgb(70, 70, 70);
+    background-color: white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -104,10 +143,11 @@ label {
 
 #tooltip p {
     margin: 0;
-    font-family: sans-serif;
-    color: rgb(231, 231, 231);
+    font-family: "Garamond";
+    color:black;
+/*     color: rgb(231, 231, 231); */
     text-align: left;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 20px;
 }
 
@@ -115,7 +155,9 @@ div.nodetip{
   display:block;
   position: absolute;
   text-align: center;
-  background: white;
+  background: rgb(255, 182, 193);
+  font-color: black;
+/*   background: white; */
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   font-size: 20px;
@@ -129,4 +171,36 @@ div.freq{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   font-size: 20px;
+}
+
+body {
+/*   background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://cdn.glitch.com/4c909740-f901-4301-b90e-d2fae49fd29f%2Fistockphoto-1051910494-612x612.jpg?v=1607242260019'); */
+  background-size: 100%;
+}
+
+/* .heatmap{
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+} */
+
+img.center{
+  display: block;
+  margin: 0 auto;
+}
+
+.info{
+  color: red;
+}
+
+.circleLabels{
+  font-color: black;
+}
+
+.column {
+  margin: auto;
+  height: 100%;
+  text-align: center;
+}
+
+.row {
 }
